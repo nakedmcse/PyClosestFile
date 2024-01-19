@@ -1,6 +1,6 @@
 # Closest File - find file with most matching words in the name for a given input filename
 import re,os
-delimiters = re.compile(r"[,;-_. ]")
+delimiters = re.compile(r"[-,;_. ]")
 
 # Get dictionary of words/occurances in string
 def get_words(filename):
@@ -21,7 +21,6 @@ def matching_count(orig_words,compare_words):
 def closest_file(received,media_dir):
     closest_filename = ""
     matches, max_matches = 0,0
-
     received_words = get_words(received)
 
     for file in os.listdir(media_dir):
@@ -33,9 +32,13 @@ def closest_file(received,media_dir):
     return closest_filename
 
 # Main
-received_filename = "[Judas][Dual Audio][FLAC][x264]Oda_Nobuna_no_Yabou_-_04.mkv"
+received_filename1 = "[Judas][Dual Audio][FLAC][x264]Oda_Nobuna_no_Yabou_-_04.mkv"
+received_filename2 = "[Judas][Dual Audio]Oda_Nobuna_no_Yabou_01_[FLAC][x264].mkv"
+received_filename3 = "[Judas]Oda Nobuna no Yabou-10 [Dual Audio][FLAC][x264].mkv"
 media_directory = "/Users/walker/Movies/Anime/Oda Nobuna no Yabou [1080]"
 
 print()
-print(f"{received_filename} --> {closest_file(received_filename,media_directory)}")
+print(f"{received_filename1} --> {closest_file(received_filename1,media_directory)}")
+print(f"{received_filename2} --> {closest_file(received_filename2,media_directory)}")
+print(f"{received_filename3} --> {closest_file(received_filename3,media_directory)}")
 print()
